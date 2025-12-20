@@ -1,6 +1,6 @@
 services:
   qwen3vl:
-    image: qwen3vl:latest
+    image: qwen3vl:dev
     container_name: qwen3vl
     gpus: all
     ipc: host
@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "2333"]
   tennis:
-    image: tennis:latest 
+    image: tennis:dev
     container_name: tennis
     gpus: all
     ipc: host
