@@ -9,7 +9,7 @@ services:
     networks:
       - qwen-net
     restart: unless-stopped
-    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "2333"]
+
   tennis:
     image: tennis:dev
     container_name: tennis
@@ -17,14 +17,14 @@ services:
     ipc: host
     volumes:
       - ./TennisProject:/workspace
-    networks:
-      - qwen-net
-    ports:
-      - "8000:8000"
+    environment:
+      - QWEN_VL_URL=http://qwen3vl:2333/chat-vl
     tty: true  
     stdin_open: true 
-    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
-
+    restart: unless-stopped
+    networks:
+      - qwen-net
+      
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: cftunnel
