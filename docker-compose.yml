@@ -19,8 +19,8 @@ services:
       - ./TennisProject:/workspace
     environment:
       - QWEN_VL_URL=http://qwen3vl:2333/chat-vl
-    tty: true  
-    stdin_open: true 
+    tty: true
+    stdin_open: true
     restart: unless-stopped
     networks:
       - qwen-net
